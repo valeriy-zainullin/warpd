@@ -168,7 +168,8 @@ int oneshot_main(struct platform *_platform)
 		platform->mouse_move(scr, x_flag, y_flag);
 	}
 
-	if (click_flag)
+	extern int explicitly_exited;
+	if (click_flag && !explicitly_exited)
 		platform->mouse_click(click_flag);
 
 	return ret;

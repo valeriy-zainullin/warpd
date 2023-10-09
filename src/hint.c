@@ -95,6 +95,8 @@ static size_t generate_fullscreen_hints(screen_t scr, struct hint *hints)
 	return n;
 }
 
+int explicitly_exited = 0;
+
 static int hint_selection(screen_t scr, struct hint *_hints, size_t _nr_hints)
 {
 	hints = _hints;
@@ -128,6 +130,7 @@ static int hint_selection(screen_t scr, struct hint *_hints, size_t _nr_hints)
 		len = strlen(buf);
 
 		if (config_input_match(ev, "hint_exit")) {
+      explicitly_exited = 1;
 			rc = -1;
 			break;
 		} else if (config_input_match(ev, "hint_undo_all")) {
